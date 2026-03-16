@@ -1,0 +1,66 @@
+%------Document Class------------
+\pdfminorversion=4
+\documentclass[10pt,xcolor=dvipsnames,aspectratio=169]{beamer}
+
+\makeatletter\let\ifGm@compatii\relax\makeatother %workaround to enforce compatibility of different versions of the geometry package
+
+\include{preamble/preamble}
+
+%------Remove this-----------------
+\include{blindtext}
+
+%------Presentation Mode------------
+\newcommand{\pathtostylefile}{}
+\mode<presentation> {\usepackage[iace,english,ar169,student]{beamerthemebmim}}
+
+%-----Add your bib files-----------------
+\include{preamble/preamble-literature}
+\addbibresource{bib/sources.bib}
+
+%---------Title,Author,Date----------
+\title[Vorlage]{Präsentationsvorlage}
+\author[J. Wurm]{Jens Wurm}
+\date[\today]{Hall in Tirol, \today}
+
+\begin{document}
+%----------------------------------------------------------------------------------------
+%	TITLE PAGE
+%----------------------------------------------------------------------------------------
+{
+\setbeamertemplate{footline}{}
+\begin{frame}
+\titlepage
+\end{frame}
+}
+\addtocounter{framenumber}{-1}
+%----------------------------------------------------------------------------------------
+%	PRESENTATION SLIDES
+%----------------------------------------------------------------------------------------
+\include{content/motivation}
+\begin{frame}
+    \frametitle{}
+    \tableofcontents
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+%	TABLE OF CONTENTS
+%----------------------------------------------------------------------------------------
+\AtBeginSubsection[]{
+\begin{frame}
+      \tableofcontents[current, currentsubsection]
+\end{frame}
+}
+%----------------------------------------------------------------------------------------
+%	PRESENTATION SLIDES
+%----------------------------------------------------------------------------------------
+\include{content/weiter}
+\nocite{*} 
+
+%----------------------------------------------------------------------------------------
+%	BIBLIOGRAPHY
+%----------------------------------------------------------------------------------------
+\begin{frame}{Referenzen}
+    \printbibliography
+\end{frame}
+
+\end{document}

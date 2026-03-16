@@ -1,0 +1,516 @@
+%----------------------------------------------------------------------------------------
+%%% DECLARE ASPECT RATIO OPTIONS %%%
+%----------------------------------------------------------------------------------------
+\newcount\cntAspectRatio			%Declare counter for aspect ratio
+\DeclareOption{ar43}{\cntAspectRatio=1}
+\DeclareOption{ar169}{\cntAspectRatio=2}
+%----------------------------------------------------------------------------------------
+%%% DECLARE LOGO OPTIONS %%%
+%----------------------------------------------------------------------------------------
+\newcount\cntInstitute			%Declare counter for logos
+\DeclareOption{iace}{\cntInstitute=1}
+\DeclareOption{ims}{\cntInstitute=2}
+\DeclareOption{iebe}{\cntInstitute=3}
+\DeclareOption{ibia}{\cntInstitute=4}
+%----------------------------------------------------------------------------------------
+%%% DECLARE STUDENT OPTIONS %%%
+%----------------------------------------------------------------------------------------
+\newcount\cntStudent			%Declare counter for student
+\DeclareOption{student}{\cntStudent=1}
+%----------------------------------------------------------------------------------------
+%%% DECLARE LANGUAGE OPTIONS %%%
+%----------------------------------------------------------------------------------------
+\newcount\cntLanguage			% Set counter to change language
+\DeclareOption{german}{\cntLanguage=1}
+\DeclareOption{english}{\cntLanguage=2}
+
+\ProcessOptions\relax			% Processes the options in the order of declaration
+%----------------------------------------------------------------------------------------
+%%% ADD PACKAGES %%%
+%----------------------------------------------------------------------------------------
+%\usepackage can not be used before \documentclass command, so use \RequirePackage to add new packages
+
+% Set language %
+\ifodd\cntLanguage
+\RequirePackage[ngerman]{babel}		% German
+\else
+\RequirePackage[english]{babel}		% English
+\fi
+
+% Set coding %
+\RequirePackage[utf8]{inputenc}	% unicode support
+\RequirePackage{lmodern}		% Changes font to 'Latin Modern'
+\RequirePackage[T1]{fontenc}	% For westeuropean coding (most signs are included)
+\RequirePackage{caption}		% Provides many ways to customise the captions in floating environments
+
+% Set math enviroment %
+\RequirePackage{amsmath} 		% To use mathematical formulas
+\RequirePackage{mathtools}		% Loads amsmath, corrects some bugs, and provides additional useful features
+\RequirePackage{mathrsfs}		% Support use of Fromal Script font in mathematics
+\RequirePackage{dsfont}  		% For typesetting mathematical symbols
+\RequirePackage{amssymb}		% Provides an extended symbol collection
+\RequirePackage{amsthm}			% Offers the theorem setup of the AMS document classes
+\RequirePackage{thmtools}		% Support for typesetting theorems
+\RequirePackage[Symbolsmallscale]{upgreek}	% Provides the upright Greek letters (\upalpha, \upbeta, etc.)
+
+% Graphics, URLs, links %
+\RequirePackage{pgf,tikz}		% Packages for creating graphics programmatically
+\RequirePackage{graphicx}		% To import external graphics
+\RequirePackage{url}			% Adding URLs
+\RequirePackage{hyperref}		% Used to handle cross-referencing command, produces hypertext links
+
+% Additional packages %
+\RequirePackage{blindtext}		% To creat blindtext
+
+%----------------------------------------------------------------------------------------
+% SET COLOR %
+%----------------------------------------------------------------------------------------
+\definecolor{titletext}{RGB}{255,255,255}
+\setbeamercolor{footline}{fg=umitgrau}
+\setbeamercolor{title}{fg=umitblau}
+\setbeamercolor{institute}{fg=umitblau}
+\setbeamercolor{footline}{fg=umitblau}
+\setbeamercolor{headbox}{fg=white,bg=umitblau}
+\setbeamercolor{frametitle}{fg=white,bg=umitblau}
+\setbeamercolor{section in toc}{bg=white,fg=umitblau}
+\setbeamercolor{subsection in toc}{bg=white,fg=umitgrau}
+
+\setbeamercolor{item}{fg=umitblau}
+\setbeamercolor{block title}{fg=umitblau,bg=white}
+\setbeamercolor{block body}{fg=black,bg=white}
+\setbeamercolor{exampleblock title}{fg=bmimgreen,bg=white}
+\setbeamercolor{definitionblock title}{fg=bmimgreen,bg=white}
+%\setbeamercolor{definition body}{fg=black,bg=green}
+
+\setbeamercolor{caption name}{fg=umitblau,bg=white}
+\setbeamercolor{bibliography entry author}{fg=umitblau,bg=white}
+\setbeamercolor{bibliography entry journal}{fg=umitblau,bg=white}
+\setbeamercolor{bibliography entry note}{fg=umitblau,bg=white}
+%----------------------------------------------------------------------------------------
+%%% SIZE SETTINGS %%%
+%----------------------------------------------------------------------------------------
+\setbeamersize{text margin left=5mm,text margin right=5mm}
+%----------------------------------------------------------------------------------------
+%%% FONT SETTINGS %%%
+%----------------------------------------------------------------------------------------
+\usefonttheme{professionalfonts}
+\setbeamerfont{title}{size=\huge}
+\setbeamerfont{frametitle}{size={\fontsize{11pt}{0}}}
+\setbeamerfont{block title}{size={\fontsize{10pt}{0}}}
+\newcommand*{\shifttext}[2]{%
+  \settowidth{\@tempdima}{#2}%
+  \makebox[\@tempdima]{\hspace*{#1}#2}%
+}
+
+%----------------------------------------------------------------------------------------
+%%% HEADER SETTINGS %%%
+%----------------------------------------------------------------------------------------
+\input{bmim.colors.tex}
+
+\newcommand{\headerbox}[1]{\setlength{\unitlength}{1cm}\colorbox{umitblau}{\makebox(#1){}}}
+
+\newcommand\varRa{0.38}
+\newcommand\varA{0.4}
+\newcommand\varH{0.42}
+\newcommand\varOff{0.0}
+
+\newcommand{\leftbox}{
+\begin{tikzpicture}
+	\ifnum\cntInstitute>0
+        % iace logo
+        \ifnum\cntInstitute=1
+            %First value-\varOff = left bottom corner, after: anticlockwise
+            \draw[fill=umitblau, color=umitblau] (0, -\varOff) -- (0.7, -\varOff) -- (0.7, \varH-\varOff) -- (0, \varH-\varOff);
+        \fi
+        % ims logo
+        \ifnum\cntInstitute=2
+            %First value-\varOff = left bottom corner, after: anticlockwise
+            \draw[fill=umitblau, color=umitblau] (0, -\varOff) -- (0.7, -\varOff) -- (0.7, \varH-\varOff) -- (0, \varH-\varOff);
+        \fi
+        % iebe logo
+        \ifnum\cntInstitute=3
+            %First value-\varOff = left bottom corner, after: anticlockwise
+            \draw[fill=umitblau, color=umitblau] (0, -\varOff) -- (0.7, -\varOff) -- (0.7, \varH-\varOff) -- (0, \varH-\varOff);
+        \fi
+        % ibia logo
+        \ifnum\cntInstitute=4
+            %First value-\varOff = left bottom corner, after: anticlockwise
+            \draw[fill=umitblau, color=umitblau] (0, -\varOff) -- (0.7, -\varOff) -- (0.7, \varH-\varOff) -- (0, \varH-\varOff);
+        \fi
+    % department style
+    \else
+        \draw[fill=umitblau, color=umitblau] (0, -\varOff) -- (2.45, -\varOff) -- (2.45, \varH-\varOff) -- (0, \varH-\varOff);
+    \fi
+\end{tikzpicture}
+}
+
+\newcommand{\midbox}{
+\begin{tikzpicture}
+	\ifnum\cntInstitute>0
+        % iace logo
+        \ifnum\cntInstitute=1
+            % aspect ratio 43
+            \ifnum\cntAspectRatio=1
+                %First value-\varOff = left bottom corner, after: anticlockwise 
+                \draw[fill=umitblau, color=umitblau] (0, -\varOff) -- (6.7, -\varOff) -- (6.7, \varH-\varOff)  -- (0, \varH-\varOff);
+                \node[anchor=west] at (0.3,0.21) {\usebeamerfont{frametitle}\textcolor{titletext}{\vphantom{$\varphi_2^{1}$}\rlap\insertframetitle}};
+            \fi
+            %
+            % aspect ratio 169
+            \ifnum\cntAspectRatio=2
+                %First value-\varOff = left bottom corner, after: anticlockwise 
+                \draw[fill=umitblau, color=umitblau] (0, -\varOff) -- (9.88, -\varOff) -- (9.88, \varH-\varOff)  -- (0, \varH-\varOff);
+                \node[anchor=west] at (0.3,0.21) {\usebeamerfont{frametitle}\textcolor{titletext}{\vphantom{$\varphi_2^{1}$}\rlap\insertframetitle}};
+            \fi
+        \fi
+        % ims logo
+        \ifnum\cntInstitute=2
+            % aspect ratio 43
+            \ifnum\cntAspectRatio=1
+                %First value-\varOff = left bottom corner, after: anticlockwise 
+                \draw[fill=umitblau, color=umitblau] (0, -\varOff) -- (7.01, -\varOff) -- (7.01, \varH-\varOff)  -- (0, \varH-\varOff);
+                \node[anchor=west] at (0.61,0.21) {\usebeamerfont{frametitle}\textcolor{titletext}{\vphantom{$\varphi_2^{1}$}\rlap\insertframetitle}};
+            \fi
+            %
+            % aspect ratio 169
+            \ifnum\cntAspectRatio=2
+                %First value-\varOff = left bottom corner, after: anticlockwise 
+                \draw[fill=umitblau, color=umitblau] (0, -\varOff) -- (10.19, -\varOff) -- (10.19, \varH-\varOff)  -- (0, \varH-\varOff);
+                \node[anchor=west] at (0.61,0.21) {\usebeamerfont{frametitle}\textcolor{titletext}{\vphantom{$\varphi_2^{1}$}\rlap\insertframetitle}};
+            \fi
+        \fi
+        % iebe logo
+        \ifnum\cntInstitute=3
+            % aspect ratio 43
+            \ifnum\cntAspectRatio=1
+                %First value-\varOff = left bottom corner, after: anticlockwise 
+                \draw[fill=umitblau, color=umitblau] (0, -\varOff) -- (6.47, -\varOff) -- (6.47, \varH-\varOff)  -- (0, \varH-\varOff);
+                \node[anchor=west] at (0.07,0.21) {\usebeamerfont{frametitle}\textcolor{titletext}{\vphantom{$\varphi_2^{1}$}\rlap\insertframetitle}};
+            \fi
+            %
+            % aspect ratio 169
+            \ifnum\cntAspectRatio=2
+                %First value-\varOff = left bottom corner, after: anticlockwise 
+                \draw[fill=umitblau, color=umitblau] (0, -\varOff) -- (9.65, -\varOff) -- (9.65, \varH-\varOff)  -- (0, \varH-\varOff);
+                \node[anchor=west] at (0.07,0.21) {\usebeamerfont{frametitle}\textcolor{titletext}{\vphantom{$\varphi_2^{1}$}\rlap\insertframetitle}};
+            \fi
+        \fi
+        % ibia logo
+        \ifnum\cntInstitute=4
+            % aspect ratio 43
+            \ifnum\cntAspectRatio=1
+                %First value-\varOff = left bottom corner, after: anticlockwise 
+                \draw[fill=umitblau, color=umitblau] (0, -\varOff) -- (7.013, -\varOff) -- (7.013, \varH-\varOff)  -- (0, \varH-\varOff);
+                \node[anchor=west] at (0.615,0.21) {\usebeamerfont{frametitle}\textcolor{titletext}{\vphantom{$\varphi_2^{1}$}\rlap\insertframetitle}};
+            \fi
+            %
+            % aspect ratio 169
+            \ifnum\cntAspectRatio=2
+                %First value-\varOff = left bottom corner, after: anticlockwise 
+                \draw[fill=umitblau, color=umitblau] (0, -\varOff) -- (10.19, -\varOff) -- (10.19, \varH-\varOff)  -- (0, \varH-\varOff);
+                \node[anchor=west] at (0.61,0.21) {\usebeamerfont{frametitle}\textcolor{titletext}{\vphantom{$\varphi_2^{1}$}\rlap\insertframetitle}};
+            \fi
+        \fi
+    % department style
+    \else
+    	% aspect ratio 43
+    	\ifnum\cntAspectRatio=1
+            %First value-\varOff = left bottom corner, after: anticlockwise 
+            \draw[fill=umitblau, color=umitblau] (0, -\varOff) -- (6.719, -\varOff) -- (6.719, \varH-\varOff)  -- (0, \varH-\varOff);
+            \node[anchor=west] at (0.32,0.21) {\usebeamerfont{frametitle}\textcolor{titletext}{\vphantom{$\varphi_2^{1}$}\rlap\insertframetitle}};
+	    \fi
+	    %
+	    % aspect ratio 169
+	    \ifnum\cntAspectRatio=2
+            %First value-\varOff = left bottom corner, after: anticlockwise 
+            \draw[fill=umitblau, color=umitblau] (0, -\varOff) -- (9.9, -\varOff) -- (9.9, \varH-\varOff)  -- (0, \varH-\varOff);
+            \node[anchor=west] at (0.32,0.21) {\usebeamerfont{frametitle}\textcolor{titletext}{\vphantom{$\varphi_2^{1}$}\rlap\insertframetitle}};
+	    \fi
+	 \fi
+\end{tikzpicture}
+}
+
+\newcommand{\rightbox}{
+\begin{tikzpicture}
+    \draw[fill=umitblau, color=umitblau] (0, -\varOff) rectangle (1.15, \varH-\varOff);
+\end{tikzpicture}
+}
+%----------------------------------------------------------------------------------------
+%%% HEADLINE %%%
+%----------------------------------------------------------------------------------------
+\setbeamertemplate{frametitle}{}
+
+\ifnum\cntInstitute>0
+\ifnum\cntInstitute=1
+% iace logo
+\ifodd\cntLanguage
+    \institute[IACE]{Institut für Automatisierungs- und Regelungstechnik\\UMIT TIROL, Hall in Tirol, Österreich}
+\else
+    \institute[IACE]{Institute of Automation and Control Engineering\\UMIT TIROL, Hall in Tirol, Austria}
+\fi
+\setbeamertemplate{headline}{\vspace*{2mm}
+	\hskip0pt
+	\shifttext{-0.26cm}{\mbox{
+			\raisebox{0.5mm}{\leftbox}
+			\shifttext{-0.54cm}{\raisebox{0.04mm}[6.3mm]{\includegraphics[height=0.63cm]{\pathtostylefile images/iace.pdf}}}
+			\shifttext{-0.925cm}{\midbox}
+            \ifodd\cntLanguage
+			    \shifttext{-0.95cm}{\raisebox{-1.785mm}{\includegraphics[height=6.64mm]{\pathtostylefile images/logo_umit_de.pdf}}}
+            \else
+			    \shifttext{-0.95cm}{\raisebox{-1.785mm}{\includegraphics[height=6.64mm]{\pathtostylefile images/logo_umit_eng.pdf}}}
+            \fi
+			\shifttext{-1.00cm}{\raisebox{0.5mm}{\rightbox}}
+	}}
+}
+\fi
+
+\ifnum\cntInstitute=2
+% ims logo
+\ifodd\cntLanguage
+    \institute[IMS]{Institut für Mess- und Sensortechnik\\UMIT TIROL, Hall in Tirol, Österreich}
+\else
+    \institute[IMS]{Institute of Measurement and Sensor Technology\\UMIT TIROL, Hall in Tirol, Austria}
+\fi
+\setbeamertemplate{headline}{\vspace*{2mm}
+		\hskip0pt
+		\shifttext{-0.26cm}{\mbox{
+            \raisebox{0.5mm}{\leftbox}
+            \shifttext{0cm}{\raisebox{-0.74mm}[6.3mm]{\includegraphics[height=0.565cm]{\pathtostylefile images/ims.pdf}}}
+            \shifttext{-0.04cm}{\midbox}
+            \ifodd\cntLanguage
+                \shifttext{-0.063cm}{\raisebox{-1.785mm}{\includegraphics[height=6.64mm]{\pathtostylefile images/logo_umit_de.pdf}}}
+            \else
+                \shifttext{-0.063cm}{\raisebox{-1.785mm}{\includegraphics[height=6.64mm]{\pathtostylefile images/logo_umit_eng.pdf}}}
+            \fi
+            \shifttext{-0.11cm}{\raisebox{0.5mm}{\rightbox}}
+	}}
+}
+\fi
+
+\ifnum\cntInstitute=3
+% iebe logo
+\ifodd\cntLanguage
+    \institute[IEBE]{Institut für Elektrotechnik und Biomedizinische Technik\\UMIT TIROL, Hall in Tirol, Österreich}
+\else
+    \institute[IEBE]{Institute of Electrical and Biomedical Engineering\\UMIT TIROL, Hall in Tirol, Austria}
+\fi
+\setbeamertemplate{headline}{\vspace*{2mm}
+		\hskip0pt
+		\shifttext{-0.26cm}{\mbox{
+            \raisebox{0.5mm}{\leftbox}
+            \shifttext{0cm}{\raisebox{0.40mm}[6.3mm]{\includegraphics[height=0.642cm]{\pathtostylefile images/iebe.pdf}}}
+            \shifttext{-0.055cm}{\midbox}
+            \ifodd\cntLanguage
+                \shifttext{-0.08cm}{\raisebox{-1.785mm}{\includegraphics[height=6.64mm]{\pathtostylefile images/logo_umit_de.pdf}}}
+            \else
+                \shifttext{-0.08cm}{\raisebox{-1.785mm}{\includegraphics[height=6.64mm]{\pathtostylefile images/logo_umit_eng.pdf}}}
+            \fi
+            \shifttext{-0.13cm}{\raisebox{0.5mm}{\rightbox}}
+	}}
+}
+\fi
+
+\ifnum\cntInstitute=4
+% ibia logo
+\ifodd\cntLanguage
+    \institute[IBIA]{Institut für Biomedizinische Bildanalyse\\UMIT TIROL, Hall in Tirol, Österreich}
+\else
+    \institute[IBIA]{Institute of Biomedical Image Analysis\\UMIT TIROL, Hall in Tirol, Austria}
+\fi
+
+\setbeamertemplate{headline}{\vspace*{2mm}
+        \hskip0pt
+        \shifttext{-0.26cm}{\mbox{
+            \raisebox{0.5mm}{\leftbox}
+            \shifttext{0cm}{\raisebox{0.40mm}[6.3mm]{\includegraphics[height=0.565cm]{\pathtostylefile images/ibia.pdf}}}
+            \shifttext{0.035cm}{\midbox}
+            \ifodd\cntLanguage
+                \shifttext{0.01cm}{\raisebox{-1.785mm}{\includegraphics[height=6.64mm]{\pathtostylefile images/logo_umit_de.pdf}}}
+            \else
+                \shifttext{0.01cm}{\raisebox{-1.785mm}{\includegraphics[height=6.64mm]{\pathtostylefile images/logo_umit_eng.pdf}}}
+            \fi
+            \shifttext{-0.04cm}{\raisebox{0.5mm}{\rightbox}}
+    }}
+}
+\fi
+
+\else
+% Department style
+\institute[UMIT]{UMIT TIROL, Hall in Tirol, Austria}
+\setbeamertemplate{headline}{\vspace*{2mm}
+		\hskip0pt
+		\shifttext{-0.26cm}{\mbox{
+            \raisebox{0.5mm}{\leftbox}
+            \shifttext{-0.535cm}{\midbox}
+            \ifodd\cntLanguage
+                \shifttext{-0.56cm}{\raisebox{-1.785mm}{\includegraphics[height=6.64mm]{\pathtostylefile images/logo_umit_de.pdf}}}
+            \else
+                \shifttext{-0.56cm}{\raisebox{-1.785mm}{\includegraphics[height=6.64mm]{\pathtostylefile images/logo_umit_eng.pdf}}}
+            \fi
+            \ifnum\cntAspectRatio=1
+                \shifttext{-0.605cm}{\raisebox{0.5mm}{\rightbox}}
+            \fi
+            \ifnum\cntAspectRatio=2
+                \shifttext{-0.62cm}{\raisebox{0.5mm}{\rightbox}}
+            \fi
+	}}
+}
+\fi
+%----------------------------------------------------------------------------------------
+%%% HEADLINE: CHANGE LOGO FOR FRAME %%%
+%----------------------------------------------------------------------------------------
+% IACE
+\makeatletter
+\define@key{beamerframe}{iace}[true]{%
+	\cntInstitute=1
+	\setbeamertemplate{headline}{\vspace*{2mm}
+		\hskip0pt
+		\shifttext{-0.26cm}{\mbox{
+            \raisebox{0.5mm}{\leftbox}
+            \shifttext{-0.54cm}{\raisebox{0.04mm}[6.3mm]{\includegraphics[height=0.63cm]{\pathtostylefile images/iace.pdf}}}
+            \shifttext{-0.925cm}{\midbox}
+            \ifodd\cntLanguage
+                \shifttext{-0.95cm}{\raisebox{-1.785mm}{\includegraphics[height=6.64mm]{\pathtostylefile images/logo_umit_de.pdf}}}
+            \else
+                \shifttext{-0.95cm}{\raisebox{-1.785mm}{\includegraphics[height=6.64mm]{\pathtostylefile images/logo_umit_eng.pdf}}}
+            \fi
+            \shifttext{-1.00cm}{\raisebox{0.5mm}{\rightbox}}
+		}}
+	}
+}
+\makeatother
+
+% IMS
+\makeatletter
+\define@key{beamerframe}{ims}[true]{%
+	\cntInstitute=2
+	\setbeamertemplate{headline}{\vspace*{2mm}
+		\hskip0pt
+		\shifttext{-0.26cm}{\mbox{
+            \raisebox{0.5mm}{\leftbox}
+            \shifttext{0cm}{\raisebox{-0.74mm}[6.3mm]{\includegraphics[height=0.565cm]{\pathtostylefile images/ims.pdf}}}
+            \shifttext{-0.04cm}{\midbox}
+            \ifodd\cntLanguage
+                \shifttext{-0.063cm}{\raisebox{-1.785mm}{\includegraphics[height=6.64mm]{\pathtostylefile images/logo_umit_de.pdf}}}
+            \else
+                \shifttext{-0.063cm}{\raisebox{-1.785mm}{\includegraphics[height=6.64mm]{\pathtostylefile images/logo_umit_eng.pdf}}}
+            \fi
+            \shifttext{-0.11cm}{\raisebox{0.5mm}{\rightbox}}
+		}}
+	}
+}
+\makeatother
+
+% IEBE
+\makeatletter
+\define@key{beamerframe}{iebe}[true]{%
+	\cntInstitute=3
+	\setbeamertemplate{headline}{\vspace*{2mm}
+		\hskip0pt
+		\shifttext{-0.26cm}{\mbox{
+            \raisebox{0.5mm}{\leftbox}
+            \shifttext{0cm}{\raisebox{0.40mm}[6.3mm]{\includegraphics[height=0.642cm]{\pathtostylefile images/iebe.pdf}}}
+            \shifttext{-0.055cm}{\midbox}
+            \ifodd\cntLanguage
+                \shifttext{-0.08cm}{\raisebox{-1.785mm}{\includegraphics[height=6.64mm]{\pathtostylefile images/logo_umit_de.pdf}}}
+            \else
+                \shifttext{-0.08cm}{\raisebox{-1.785mm}{\includegraphics[height=6.64mm]{\pathtostylefile images/logo_umit_eng.pdf}}}
+            \fi
+            \shifttext{-0.13cm}{\raisebox{0.5mm}{\rightbox}}
+		}}
+	}
+}
+\makeatother
+
+% IBIA
+\makeatletter
+\define@key{beamerframe}{ibia}[true]{%
+    \cntInstitute=4
+    \setbeamertemplate{headline}{\vspace*{2mm}
+        \hskip0pt
+        \shifttext{-0.26cm}{\mbox{
+            \raisebox{0.5mm}{\leftbox}
+            \shifttext{0cm}{\raisebox{0.40mm}[6.3mm]{\includegraphics[height=0.565cm]{\pathtostylefile images/ibia.pdf}}}
+            \shifttext{0.035cm}{\midbox}
+            \ifodd\cntLanguage
+                \shifttext{0.01cm}{\raisebox{-1.785mm}{\includegraphics[height=6.64mm]{\pathtostylefile images/logo_umit_de.pdf}}}
+            \else
+                \shifttext{0.01cm}{\raisebox{-1.785mm}{\includegraphics[height=6.64mm]{\pathtostylefile images/logo_umit_eng.pdf}}}
+            \fi
+            \shifttext{-0.04cm}{\raisebox{0.5mm}{\rightbox}}
+        }}
+    }
+}
+\makeatother
+
+% Department style
+\makeatletter
+\define@key{beamerframe}{ds}[true]{%
+	\cntInstitute=0
+	\setbeamertemplate{headline}{\vspace*{2mm}
+		\hskip0pt
+		\shifttext{-0.26cm}{\mbox{
+            \raisebox{0.5mm}{\leftbox}
+            \shifttext{-0.535cm}{\midbox}
+            \ifodd\cntLanguage
+                \shifttext{-0.56cm}{\raisebox{-1.785mm}{\includegraphics[height=6.64mm]{\pathtostylefile images/logo_umit_de.pdf}}}
+            \else
+                \shifttext{-0.56cm}{\raisebox{-1.785mm}{\includegraphics[height=6.64mm]{\pathtostylefile images/logo_umit_eng.pdf}}}
+            \fi
+            \ifnum\cntAspectRatio=1
+                \shifttext{-0.605cm}{\raisebox{0.5mm}{\rightbox}}
+            \fi
+            \ifnum\cntAspectRatio=2
+                \shifttext{-0.62cm}{\raisebox{0.5mm}{\rightbox}}
+            \fi
+		}}
+	}
+}
+\makeatother
+%----------------------------------------------------------------------------------------
+%%% FOOTLINE %%%
+%----------------------------------------------------------------------------------------
+\setbeamertemplate{footline}{
+  \leavevmode%
+  \hrule
+  \hbox{%
+  \begin{beamercolorbox}[wd=0.92\paperwidth,ht=2.25ex,dp=1ex,left]{umitblau}%
+    \hspace*{2ex}
+    \insertshortauthor
+    \hfill
+    \insertshorttitle
+    \ifnum\cntStudent=1
+        \iflanguage{english}{
+        	- The \insertshortinstitute{} is not responsible for the content of this presentation.
+        }{
+        	- \ifnum\cntInstitute>0
+        		Das
+        	  \else
+        		Die
+        	  \fi
+        		\insertshortinstitute{} ist nicht für den Inhalt dieser Präsentation verantwortlich.
+    	}
+    \fi
+    \hfill
+    \insertshortdate{}
+    \hfill
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=0.08\paperwidth,ht=2.25ex,dp=1ex,right]{umitblau}%
+    \insertframenumber{} / \inserttotalframenumber\hspace*{2ex}
+  \end{beamercolorbox}}%
+  \vskip0pt%
+}
+%----------------------------------------------------------------------------------------
+%%% TABLE OF CONTENTS %%%
+%----------------------------------------------------------------------------------------
+% SECTION %
+\setbeamertemplate{section in toc}[square]
+
+% SUBSECTION %
+\setbeamertemplate{subsection in toc}{
+\hspace{1.5em}{\color{umitblau}\rule[0.4ex]{3pt}{3pt}}~\inserttocsubsection\par}
+
+%%% INNERTHEME %%%
+\useinnertheme{default}
+
+%%% BLOCK DEFINITIONS %%%%

@@ -1,0 +1,57 @@
+%------Usepackage------------
+
+% Fond and color %
+\usepackage{multicol}		% Defines a multicols environment which typesets text in multiple columns
+\usepackage[normalem]{ulem}	% Provides an \ul (underline) command which will break over line ends
+\usepackage{bm}				% Provides command \bm which makes its argument bold
+\usepackage{colortbl}		% Allows rows and columns to be colored
+
+% Math and Symbols %
+\usepackage{eurosym}		% The European currency symbol for Euro impemented
+\usepackage{fixmath}		% Ensures that uppercase Greek be typeset in italic style and provides new math alphabet and functions
+\usepackage{chemformula}	% Provides a command to typeset chemical formulas 
+%and reactions
+\usepackage{siunitx}
+\makeatletter
+\@ifpackagelater{siunitx}{2021/05/17} % Release Day of V3
+{
+	\sisetup{per-mode=fraction,
+        output-decimal-marker = {,},
+		inter-unit-product=\ensuremath{{\cdot}},
+		exponent-product=\ensuremath{\cdot},
+		fraction-function=\nicefrac}
+}{%
+	\sisetup{per=frac,
+		fraction=nice,
+		decimalsymbol=comma,
+		binary-units=true,
+		loctolang={DE:ngerman,UK:english}}
+}
+\makeatother
+
+% Figures, tables, boxes %
+\usepackage{wrapfig}		% Produces figures which text can flow around
+\usepackage{tabularx}		% Extension of tabular which has an additional column designator to create paragraph-like columns
+\usepackage{subfigure}		% Support for 'sub' figures and tables
+\usepackage{longtable}		% Allows to write tables that continue to the next page
+\usepackage{booktabs} 		% Enhances the quality of tables (extra commands) 
+\usepackage{adjustbox}		% Provides several macros to adjust boxed content
+\usepackage{mdframed}		% Provides breakable framed and colored boxes
+
+% Use PDF %
+\usepackage{epstopdf}		% To use eps as pdf
+%%% Doc: ftp://tug.ctan.org/pub/tex-archive/macros/latex/contrib/pdfpages/pdfpages.pdf
+\usepackage{pdfpages} 		% Include pages from external PDF documents in LaTeX documents
+
+% Additional Packages %
+\usepackage{xargs}			% Use more than one optional parameter in a new command
+\usepackage{etoolbox}		% Offers alternative ways of implementing some Latex kernel commands	
+\usepackage[colorinlistoftodos,prependcaption,textsize=tiny]{todonotes}	% Package lets user mark things to do later
+\presetkeys{todonotes}{inline}{}
+\newcommandx{\info}[2][1=]{\todo[linecolor=OliveGreen,backgroundcolor=OliveGreen!25,bordercolor=OliveGreen,#1]{#2}}
+
+%------Navigation List on/off------------
+\setbeamertemplate{navigation symbols}{}
+
+%------Definition insertframetitle------------
+\def\insertframetitle{}
