@@ -26,8 +26,7 @@ def kran_nonlin(t, x):
                    dxb,
                    -dc/mb*(dxc-dxb) - cc/mb*(xc-xb) + db/mb*dxb + cb/mb*xb,
                    dalpha,
-                   np.sin(alpha)*g/l**2 + drot*dalpha]).T
-
+                   np.sin(alpha)*g/l + drot*dalpha]).T
 
     return dx
 
