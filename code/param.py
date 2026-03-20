@@ -11,11 +11,11 @@ mp = 10     #kg
 g = 9.81    #m/s**2
 
 mb = 10     #kg
-db = .1     #ZU BESTIMMEN
-cb = 1     #AUCH
+db = .001     #ZU BESTIMMEN
+cb = 5     #AUCH
 
 l = 2       #m
 
-drot = .1   #ZU BESTIMMEN
+drot = .001   #ZU BESTIMMEN
 
 kt = .73
