@@ -11,8 +11,8 @@ mp = 10     #kg
 g = 9.81    #m/s**2
 
 mb = 10     #kg
-db = .001     #ZU BESTIMMEN
-cb = 5     #AUCH
+db = .1     #ZU BESTIMMEN
+cb = 1     #AUCH
 
 l = 2       #m
 

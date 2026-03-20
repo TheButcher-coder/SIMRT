@@ -27,12 +27,12 @@ def kran_nonlin(t, x):
     Fg = mp*g
     J = mp*l**2
 
-    ddxc = dc/mc*(dxb-dxc) + cc/mc*(xb-xc) - np.sin(alpha)*mp*g/mc - i*36.69/mc
+    ddxc = dc/mc*(dxb-dxc) + cc/mc*(xb-xc) - np.sin(alpha)*mp*g/mc + i*36.69/mc
     dx = np.array([u(t)/L - R*i/L - kt/L*(dxb-dxc),
                    dxc,
                    ddxc,
                    dxb,
-                   -dc/mb*(dxb-dxc) - cc/mb*(xb-xc) + db/mb*dxb + cb/mb*xb + i*36.69/mb,
+                   -dc/mb*(dxb-dxc) - cc/mb*(xb-xc) + db/mb*dxb + cb/mb*xb - i*36.69/mb,
                    dalpha,
                     -Fg*np.sin(alpha)*l/J - drot*dalpha/J + mp*ddxc*l*np.cos(alpha)/J]).T
 
