@@ -38,13 +38,36 @@ def kran_nonlin(t, x):
 
     return dx
 
+def kran_nonlin_lagrange(t, x):
+    i = x[0]
+    xc = np.clip(x[1], 0, 6)
+    dxc = x[2]
+    xb = np.clip(x[3], 0, 1)
+    dxb = x[4]
+    alpha = x[5]
+    dalpha = x[6]
+
+
+    d_x = xc-xb
+    d_dx = dxc-dxb
+
+    dx = np.array([-kt/L*d_dx - R/L*i + u(t)/L,
+                   dxc,
+                   mp*np.sin(alpha)/(mc+mp*np.sin(alpha)**2)*(g*np.cos(alpha)+l*dalpha**2) + np.cos(alpha)*drot/(mc+mp*np.sin(alpha)**2)*dalpha + kt/(mc+mp*np.sin(alpha)**2)*i - cc/(mc+mp*np.sin(alpha)**2)*d_x - dc/(mc+mp*np.sin(alpha)**2)*d_dx,
+                   dxb,
+                   -kt/mb*i + cc/mb*d_x - cb/mb*xb + dc/mb*d_dx - db/mb*dxb,
+                   dalpha,
+                   -mp*np.sin(alpha)/(mc+mp*np.sin(alpha)**2)*(g/l*np.cos(alpha)**2+np.cos(alpha)*dalpha**2) - np.cos(alpha)**2*drot/((mc+mp*np.sin(alpha)**2)*l**2)*dalpha - kt*np.cos(alpha)/(mc+mp*np.sin(alpha)**2)/l*i + cc*np.cos(alpha)/(mc+mp*np.sin(alpha)**2)/l*d_x + dc*np.cos(alpha)/(mc+mp*np.sin(alpha)**2)/l*d_dx - g/l*np.sin(alpha) - drot/(mp*l**2)*dalpha])
+
+    return dx
+
 
 #test solve#
 t_span = [0, 50]
 x0 = np.array([0, 0, 0, 0, 0, 0, 0])
-sol = scipy.integrate.solve_ivp(kran_nonlin, t_span, x0)
+sol = scipy.integrate.solve_ivp(kran_nonlin_lagrange, t_span, x0)
 
-plt.plot(sol.t, sol.y[0], label='i')
+#plt.plot(sol.t, sol.y[0], label='i')
 plt.plot(sol.t, sol.y[1], label='xc')
 plt.plot(sol.t, sol.y[3], label='xb')
 
