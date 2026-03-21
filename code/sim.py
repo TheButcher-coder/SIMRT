@@ -66,14 +66,15 @@ def kran_nonlin_lagrange(t, x):
 t_span = [0, 50]
 x0 = np.array([0, 0, 0, 0, 0, 0, 0])
 sol = scipy.integrate.solve_ivp(kran_nonlin_lagrange, t_span, x0)
+lw = .5
 
 #plt.plot(sol.t, sol.y[0], label='i')
-plt.plot(sol.t, sol.y[1], label='xc')
-plt.plot(sol.t, sol.y[3], label='xb')
+plt.plot(sol.t, sol.y[1], label='xc', lw=lw)
+plt.plot(sol.t, sol.y[3], label='xb', lw=lw)
 
-plt.plot(sol.t, sol.y[2], label='dxc')
-plt.plot(sol.t, sol.y[4], label='dxb')
-plt.plot(sol.t, sol.y[5], label='alpha')
+plt.plot(sol.t, sol.y[2], label='dxc', lw=lw)
+plt.plot(sol.t, sol.y[4], label='dxb', lw=lw)
+plt.plot(sol.t, sol.y[5], label='alpha', lw=lw)
 #plt.plot(sol.t, sol.y[6], label='dalpha')
 plt.grid()
 plt.legend()
